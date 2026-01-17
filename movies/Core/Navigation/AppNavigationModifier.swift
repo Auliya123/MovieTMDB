@@ -18,7 +18,8 @@ struct AppNavigationModifier: ViewModifier {
                     let vm = dependencies.makeListViewModel()
                     MovieListView(viewModel: vm)
                 case .detail(let id):
-                    MovieDetailView()
+                    let vm = dependencies.makeDetailViewModel()
+                    MovieDetailView(viewModel: vm, movieId: id)
                 }
             }
     }

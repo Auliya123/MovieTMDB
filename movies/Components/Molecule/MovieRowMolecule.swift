@@ -17,7 +17,7 @@ struct MovieRowMolecule: View {
                 if let posterUrl = movie.posterUrl {
                     MovieImageAtom(
                         url: posterUrl,
-                        width: 160,
+                        width: 180,
                         height: 240
                     )
                 }else{

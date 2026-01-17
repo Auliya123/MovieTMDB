@@ -12,4 +12,8 @@ class AppDependencies {
     func makeListViewModel() -> MovieListViewModel {
         return MovieListViewModel()
     }
+
+    func makeDetailViewModel() -> MovieDetailViewModel {
+        return MovieDetailViewModel()
+    }
 }
