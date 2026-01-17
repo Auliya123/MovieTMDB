@@ -12,17 +12,23 @@ class MovieDetailViewModel {
     var movie: MovieDetailResponse?
     var trailer: URL?
     var alertMessage: String?
+    var reviews: [MovieReview] = []
     var isLoading: Bool = false
+    var isLoadingReviews: Bool = false
     var isTrailerPresented = false
     var isAlertPresented = false
 
     private let movieDetailService: MovieDetailServiceProtocol
     private let movieVideoService: MovieVideoServiceProtocol
+    private let movieReviewService: MovieReviewServiceProtocol
 
     init(movieDetailService: MovieDetailServiceProtocol = MovieDetailService(),
-         movieVideoService: MovieVideoServiceProtocol = MovieVideoService()) {
+         movieVideoService: MovieVideoServiceProtocol = MovieVideoService(),
+         movieReviewService: MovieReviewServiceProtocol = MovieReviewService()
+    ) {
         self.movieDetailService = movieDetailService
         self.movieVideoService = movieVideoService
+        self.movieReviewService = movieReviewService
     }
 
     func loadDetail(id: Int) async {
@@ -49,6 +55,18 @@ class MovieDetailViewModel {
         }
     }
 
+    func getMovieReviews(id: Int) async {
+        self.isLoadingReviews = true
+        defer { isLoadingReviews = false }
+
+        do {
+            let response = try await movieReviewService.fetchMovieReviews(id: id)
+            print("response results: \(response.results)")
+            self.reviews = response.results
+        }catch{
+            print("Error Fetching Data: \(error)")
+        }
+    }
 
     func onTrailerTapped() {
         guard trailer != nil else {

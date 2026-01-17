@@ -11,15 +11,20 @@ struct MovieReviewMolecule: View {
     let avatarURL: URL?
     let author: String
     let ratingText: String
-    let dateText: String
+    let dateText: String?
     let review: String
     
     var body: some View {
         ContentCardAtom{
             HStack(spacing: 12) {
-                MovieImageAtom(url: avatarURL, width: 40, height: 40)
-                    .clipShape(Circle())
-                
+                if let avatarURL{
+                    MovieImageAtom(url: avatarURL, width: 40, height: 40)
+                        .clipShape(Circle())
+                }else{
+                    PosterPlaceholderAtom(width: 40, height: 40)
+                        .clipShape(Circle())
+                }
+
                 VStack(alignment: .leading, spacing: 4) {
                     MovieNameAtom(
                         name: "A review by \(author)",
@@ -30,7 +35,7 @@ struct MovieReviewMolecule: View {
                         UserRatingAtom(percentText: ratingText)
                         
                         MovieNameAtom(
-                            name: dateText,
+                            name: dateText ?? "-",
                             style: .cardDetail
                         )
                     }

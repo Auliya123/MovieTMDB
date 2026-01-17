@@ -14,9 +14,11 @@ struct ContentCardAtom<Content: View>: View {
         VStack(alignment: .leading, spacing: 12) {
             content
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
         .background(.white)
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .shadow(color: .black.opacity(0.08), radius: 8, y: 4)
+
     }
 }
