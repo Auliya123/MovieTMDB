@@ -16,7 +16,7 @@ Movies is a native iOS application that lets users discover popular movies, expl
 
 ## Video Screenshot
 
-https://github.com/user-attachments/assets/357c4c5d-400e-4dcd-80f0-78fc37cda4c8
+https://github.com/user-attachments/assets/3c9f994b-95eb-4ac3-9890-84afea46bc9b
 
 ## Requirements
 
