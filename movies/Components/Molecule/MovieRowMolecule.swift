@@ -17,9 +17,9 @@ struct MovieRowMolecule: View {
                 if let posterUrl = movie.posterUrl {
                     MovieImageAtom(
                         url: posterUrl,
-                        width: 180,
                         height: 240
                     )
+                    .frame(maxWidth: .infinity)
                 }else{
                     PosterPlaceholderAtom(width: 160, height: 240)
                 }

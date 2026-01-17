@@ -25,8 +25,7 @@ final class Networker: NetworkerProtocol {
             throw APIRequestError.badRequest(message: "Failed to create request from endpoint")
         }
 
-       ///TODO: add networker logger
-        print("network url \(endPoint.path)")
+        NetworkLogger.log(request: urlRequest)
 
         do{
             (data, response) = try await URLSession.shared.data(for: urlRequest)
@@ -40,7 +39,7 @@ final class Networker: NetworkerProtocol {
             throw APIRequestError.invalidResponse(message: errorMessage)
         }
 
-        ///TODO: add networker logger
+        NetworkLogger.log(response: httpResponse, data: data)
 
         guard (200...299).contains(httpResponse.statusCode) else {
             let res = try? JSONDecoder().decode(NetworkHandle.self, from: data)
