@@ -29,7 +29,7 @@ extension URLRequest {
         }
 
 
-        let authorization = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYTAyMWVjYmY4Yjc5ZTAzZGFmNGUzYzQxNmIxNmVhYSIsIm5iZiI6MTU5MDM5NzY5OC40OTMsInN1YiI6IjVlY2I4YjAyOGUyZTAwMDAyMDI3YTE5MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wBKEF9F0u1xXDfEqYjGzhAJjHObbM1h-hhxFapyFb6s"
+        let authorization = "Bearer \(AppConfig.tmdbAPIKey)"
         self.setValue(authorization, forHTTPHeaderField: "Authorization")
 
 
