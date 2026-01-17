@@ -8,16 +8,12 @@
 import SwiftUI
 
 struct MovieReviewMolecule: View {
-    let avatarURL: URL?
-    let author: String
-    let ratingText: String
-    let dateText: String?
-    let review: String
-    
+    let review: MovieReview
+
     var body: some View {
         ContentCardAtom{
             HStack(spacing: 12) {
-                if let avatarURL{
+                if let avatarURL = review.authorDetails?.avatarURL{
                     MovieImageAtom(url: avatarURL, width: 40, height: 40)
                         .clipShape(Circle())
                 }else{
@@ -27,22 +23,22 @@ struct MovieReviewMolecule: View {
 
                 VStack(alignment: .leading, spacing: 4) {
                     MovieNameAtom(
-                        name: "A review by \(author)",
+                        name: "A review by \(review.author)",
                         style: .cardTitle
                     )
                     
                     HStack(spacing: 8) {
-                        UserRatingAtom(percentText: ratingText)
-                        
+                        UserRatingAtom(percentText: review.authorDetails?.ratingPercent ?? "NR")
+
                         MovieNameAtom(
-                            name: dateText ?? "-",
+                            name: review.createdAtText ?? "-",
                             style: .cardDetail
                         )
                     }
                 }
             }
             MovieNameAtom(
-                name: review,
+                name: review.content,
                 style: .normalText
             ).lineLimit(4)
         }

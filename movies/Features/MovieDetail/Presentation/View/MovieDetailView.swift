@@ -50,27 +50,15 @@ struct MovieDetailView: View {
                             style: .sectionTitle
                         )
 
-//                        ForEach(viewModel.reviews.prefix(3)) { review in
-//                            MovieReviewMolecule(avatarURL: review.authorDetails?.avatarURL, author: review.author, ratingText: review.authorDetails?.ratingPercent ?? "NR", dateText: review.createdAtText, review: review.content)
-//                        }
-
                         if viewModel.reviews.isEmpty {
-                            Text("No reviews available yet.")
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
+                            MovieNameAtom(name: "No reviews available yet.", style: .cardDetail)
                                 .frame(maxWidth: .infinity, alignment: .center)
                                 .padding(.vertical, 16)
                         } else {
                             let previewReviews = Array(viewModel.reviews.prefix(3))
 
                             ForEach(previewReviews) { review in
-                                MovieReviewMolecule(
-                                    avatarURL: review.authorDetails?.avatarURL,
-                                    author: review.author,
-                                    ratingText: review.authorDetails?.ratingPercent ?? "NR",
-                                    dateText: review.createdAtText,
-                                    review: review.content
-                                )
+                                MovieReviewMolecule(review: review)
                             }
                         }
                     }
