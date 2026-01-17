@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MovieListView: View {
+    @Environment(AppRouter.self) var router
     @State var viewModel: MovieListViewModel
 
     private let columns = [ GridItem(), GridItem()  ]
@@ -18,13 +19,13 @@ struct MovieListView: View {
 
             if viewModel.isLoading && viewModel.movies.isEmpty {
                 ProgressView("Finding Popular Movies...")
-                    .frame(maxWidth: .infinity, alignment: .center)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }else{
 
                 LazyVGrid(columns: columns, spacing: 16) {
                     ForEach(viewModel.movies) { movie in
                         Button {
-                            print("Button Tapped")
+                            router.push(.detail(id: movie.id))
                         } label: {
                             MovieRowMolecule(movie: movie)
                         }

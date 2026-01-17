@@ -19,7 +19,9 @@ struct moviesApp: App {
             NavigationStack(path: $router.path){
                 let listVM = dependencies.makeListViewModel()
                 MovieListView(viewModel: listVM)
+                    .withAppRouter(dependencies: dependencies)
             }
+            .environment(router)
         }
     }
 }

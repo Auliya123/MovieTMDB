@@ -9,6 +9,7 @@ import SwiftUI
 
 enum AppRoute: Hashable {
     case list
+    case detail(id: Int)
 }
 
 @Observable

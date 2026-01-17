@@ -10,6 +10,10 @@ import SwiftUI
 enum MovieNameStyle{
     case cardTitle
     case cardDetail
+    case whiteTitle
+    case whiteSubtitle
+    case sectionTitle
+    case normalText
 }
 
 struct MovieNameAtom: View {
@@ -17,7 +21,7 @@ struct MovieNameAtom: View {
     let style: MovieNameStyle
 
     var body: some View {
-        Text(name.capitalized)
+        Text(name)
             .font(fontForStyle(style))
             .foregroundStyle(colorForStyle(style))
     }
@@ -26,8 +30,14 @@ struct MovieNameAtom: View {
         switch style {
         case .cardTitle:
             return .system(size: 16, weight: .bold)
-        case .cardDetail:
+        case .cardDetail,  .whiteSubtitle:
             return .system(size: 12, weight: .medium)
+        case .whiteTitle:
+            return .system(size: 24, weight: .bold)
+        case .normalText:
+            return .system(size: 12, weight: .light)
+        case .sectionTitle:
+            return .system(size: 20, weight: .bold)
         }
     }
 
@@ -35,6 +45,8 @@ struct MovieNameAtom: View {
         switch style {
         case .cardDetail:
                 .secondary
+        case .whiteTitle, .whiteSubtitle:
+                .white
         default:
                 .primary
         }
