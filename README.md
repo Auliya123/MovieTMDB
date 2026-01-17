@@ -12,7 +12,7 @@ Movies is a native iOS application that lets users discover popular movies, expl
 ## Screenshots
 <img width="240" alt="Screenshot 2026-01-18 at 05 30 12" src="https://github.com/user-attachments/assets/50e7a5b6-f092-4392-8315-091c43ea364c" />
 
-<img width="512" height="968" alt="Screenshot 2026-01-18 at 05 31 08" src="https://github.com/user-attachments/assets/3ff6e969-b030-448e-a01c-f6a337b86368" />
+<img width="240" alt="Screenshot 2026-01-18 at 05 31 08" src="https://github.com/user-attachments/assets/3ff6e969-b030-448e-a01c-f6a337b86368" />
 
 ## Video Screenshot
 
