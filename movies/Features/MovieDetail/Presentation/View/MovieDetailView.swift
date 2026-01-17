@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WebKit
 
 struct MovieDetailView: View {
     @State var viewModel: MovieDetailViewModel
@@ -26,7 +27,7 @@ struct MovieDetailView: View {
                         title: movie.title,
                         runtimeText: movie.runtimeText ?? "-"
                     ) {
-                        print("trailer tapped")
+                        viewModel.onTrailerTapped()
                     }
 
                     VStack(alignment: .leading, spacing: 8) {
@@ -58,8 +59,20 @@ struct MovieDetailView: View {
             .padding(.top, 16)
             .background(Color.black.opacity(0.02))
         }
+        .sheet(isPresented: $viewModel.isTrailerPresented) {
+            if let url = viewModel.trailer {
+                WebViewAtom(url: url)
+                    .ignoresSafeArea()
+            }
+        }
+        .alert("Oops", isPresented: $viewModel.isAlertPresented) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(viewModel.alertMessage ?? "")
+        }
         .task {
             await viewModel.loadDetail(id: movieId)
+            await viewModel.getTrailerVideo(id: movieId)
         }
     }
 }

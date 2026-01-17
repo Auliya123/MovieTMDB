@@ -11,4 +11,5 @@ class Constants{
     static var imageBaseURL: String = "https://image.tmdb.org/t/p/original"
     static var baseURL: String = "api.themoviedb.org"
     static var apiPathPrefix: String = "/3/"
+    static var youtubeURL: String = "https://www.youtube.com/watch?v="
 }

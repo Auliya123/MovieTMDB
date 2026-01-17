@@ -26,6 +26,7 @@ final class Networker: NetworkerProtocol {
         }
 
        ///TODO: add networker logger
+        print("network url \(endPoint.path)")
 
         do{
             (data, response) = try await URLSession.shared.data(for: urlRequest)
