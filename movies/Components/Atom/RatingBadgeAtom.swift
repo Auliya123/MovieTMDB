@@ -8,18 +8,26 @@
 import SwiftUI
 
 struct RatingBadgeAtom: View {
-    let value: Int
-
+    let value: Double
 
     private var progress: Double {
-        Double(value) / 100
+        min(max(value / 10, 0), 1)
     }
+
+    private var percentValue: Int {
+        Int((value * 10).rounded())
+    }
+
+    private var percentText: String {
+        percentValue == 0 ? "NR" : "\(percentValue)%"
+    }
+
 
     private var strokeColor: Color {
         switch value {
-        case 70...100: return .green
-        case 40..<70: return .yellow
-        default: return .red
+        case 7.0...10.0: return .green
+        case 4.0..<7.0: return .yellow
+        default: return .gray
         }
     }
 
@@ -48,7 +56,7 @@ struct RatingBadgeAtom: View {
                 )
                 .rotationEffect(.degrees(-90))
 
-            Text("\(value)%")
+            Text(percentText)
                 .font(.caption.bold())
                 .foregroundColor(.white)
         }

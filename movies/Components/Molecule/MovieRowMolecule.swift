@@ -8,36 +8,43 @@
 import SwiftUI
 
 struct MovieRowMolecule: View {
-    var releaseDate = DateFormatter.tmdbAPIDate.date(from: "2025-11-05")
+    let movie: Movie
 
     var body: some View {
         VStack(spacing: 12){
 
             ZStack(alignment: .bottomLeading) {
-                MovieImageAtom(
-                    url: URL(string: "https://image.tmdb.org/t/p/w500/pHpq9yNUIo6aDoCXEBzjSolywgz.jpg"),
-                    width: 160,
-                    height: 240
-                )
+                if let posterUrl = movie.posterUrl {
+                    MovieImageAtom(
+                        url: posterUrl,
+                        width: 160,
+                        height: 240
+                    )
+                }else{
+                    PosterPlaceholderAtom(width: 160, height: 240)
+                }
 
-                RatingBadgeAtom(value: 78)
-                    .offset(x: 8, y: 28) // 👈 pushes it below the image
+                RatingBadgeAtom(value: movie.voteAverage)
+                    .offset(x: 8, y: 28)
             }
 
             VStack(alignment: .leading, spacing: 4) {
-                           MovieNameAtom(
-                               name: "Predator: Badlands",
-                               style: .cardTitle
-                           )
+                MovieNameAtom(
+                    name: movie.title,
+                    style: .cardTitle
+                )
+                .multilineTextAlignment(.leading)
 
-                           MovieNameAtom(
-                               name: DateFormatter.displayString(from: releaseDate),
-                               style: .cardDetail
-                           )
-                       }
-                       .padding(.horizontal, 8)
-                       .padding(.bottom, 8)
-                       .padding(.top, 24)
+                MovieNameAtom(
+                    name: DateFormatter.displayString(from: DateFormatter.tmdbAPIDate.date(from: movie.releaseDate)),
+                    style: .cardDetail
+                )
+                .multilineTextAlignment(.leading)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 8)
+            .padding(.bottom, 8)
+            .padding(.top, 24)
         }
         .background(.white)
         .clipShape(RoundedRectangle(cornerRadius: 8))

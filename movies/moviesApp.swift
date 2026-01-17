@@ -10,11 +10,15 @@ import SwiftUI
 @main
 struct moviesApp: App {
     @State private var router = AppRouter()
-    
+    @State private var dependencies = AppDependencies()
+
+
+
     var body: some Scene {
         WindowGroup {
             NavigationStack(path: $router.path){
-                MovieListView()
+                let listVM = dependencies.makeListViewModel()
+                MovieListView(viewModel: listVM)
             }
         }
     }
