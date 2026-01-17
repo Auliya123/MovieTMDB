@@ -16,6 +16,7 @@ struct MovieVideo: Identifiable, Codable{
     let id: String
     let site: String
     let key: String?
+    let type: String?
     var trailerURL: URL? {
         guard let key else {return nil}
         guard site == "YouTube" else {return nil}

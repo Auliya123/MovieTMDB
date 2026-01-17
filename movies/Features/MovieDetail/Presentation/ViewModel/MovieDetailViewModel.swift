@@ -49,7 +49,7 @@ class MovieDetailViewModel {
 
         do {
             let response = try await movieVideoService.fetchMovieVideo(id: id)
-            self.trailer = response.results.first?.trailerURL
+            self.trailer = response.results.first { $0.type == "Trailer" }?.trailerURL
         }catch{
             print("Error Fetching Data: \(error)")
         }
